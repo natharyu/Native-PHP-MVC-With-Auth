@@ -1,0 +1,14 @@
+{
+  "name": "anthony/php-natif-mvc",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "App\\": "App/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Natharyu"
+    }
+  ]
+}
