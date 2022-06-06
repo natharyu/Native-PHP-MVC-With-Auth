@@ -4,7 +4,7 @@ If you will build your own PHP project in MVC with router and Auth, you can clon
 Auth system is implemented. Works with bootstrap 5.
 Composer with autoload are implemented too for future composer require.
 
-### ✨ [Demo](http://native-php-mvc.dew-dev.fr/)
+### ✨ [Demo](http://native-php-mvc-auth.dew-dev.fr)
 
 ## Usage
 
