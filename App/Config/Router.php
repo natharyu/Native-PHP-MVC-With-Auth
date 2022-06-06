@@ -2,6 +2,7 @@
 
 class Router
 {
+    // Route get type
     public static function get($route, $callback)
     {
         if (strcasecmp($_SERVER['REQUEST_METHOD'], 'GET') !== 0) {
@@ -11,6 +12,7 @@ class Router
         self::on($route, $callback);
     }
 
+    //Route post type
     public static function post($route, $callback)
     {
         if (strcasecmp($_SERVER['REQUEST_METHOD'], 'POST') !== 0) {

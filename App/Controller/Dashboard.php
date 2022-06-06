@@ -6,7 +6,8 @@ use App\Controller\User;
 
 class Dashboard
 {
-    public function index()
+    // Return Dashboard main view if user is 'ADMIN'
+    public function index() :void
     {
         if(Session::isAdmin($_SESSION['sessionKey']))
         {
@@ -21,7 +22,8 @@ class Dashboard
         }
     }
 
-    public function usersView()
+    // Return Dashboard users manager view if user is 'ADMIN'
+    public function usersView() :void
     {
         if(Session::isAdmin($_SESSION['sessionKey']))
         {
@@ -37,7 +39,8 @@ class Dashboard
         }
     }
 
-    public function userModifyView()
+    // Return Dashboard user modify view if user is 'ADMIN'
+    public function userModifyView() :void
     {
         if(Session::isAdmin($_SESSION['sessionKey']))
         {
@@ -53,7 +56,8 @@ class Dashboard
         }
     }
 
-    public function userModifyValidate()
+    // Validate inputs for modify user info from dashboard user modify view
+    public function userModifyValidate() :void
     {
         if(Session::isAdmin($_SESSION['sessionKey']))
         {
@@ -71,14 +75,14 @@ class Dashboard
         }
     }
 
-    public static function validateResults(Array $users, Array $user, String $username = null, String $email = null)
+    public static function validateResults(Array $users, Array $user, String $username = null, String $email = null) :array
     {
         $results['username'] = self::usernameValidate($users, $user, $username);
         $results['email'] = self::emailValidate($users, $user, $email);
         return $results;
     }
 
-    public static function usernameValidate(Array $users, Array $user, String $username)
+    public static function usernameValidate(Array $users, Array $user, String $username) :string
     {
         try
         {
@@ -111,7 +115,7 @@ class Dashboard
         }
     }
 
-    public static function emailValidate(Array $users, Array $user, String $email)
+    public static function emailValidate(Array $users, Array $user, String $email) :string
     {
         try
         {
@@ -148,7 +152,7 @@ class Dashboard
         }
     }
 
-    public static function errorValidatation(Array $results, Array $currentValues, Array $user)
+    public static function errorValidatation(Array $results, Array $currentValues, Array $user) :void
     {
         foreach($results as $result => $value)
         {
@@ -169,7 +173,7 @@ class Dashboard
         }
     }
 
-    public static function userModify($values, $user)
+    public static function userModify(Array $values, Array $user) :void
     {
         if(Session::isAdmin($_SESSION['sessionKey']))
         {
@@ -192,7 +196,8 @@ class Dashboard
         }
     }
 
-    public static function userDelete()
+    // Delete one user from Dashboard users manager view if user is 'ADMIN'
+    public static function userDelete() :void
     {
         if(Session::isAdmin($_SESSION['sessionKey']))
         {

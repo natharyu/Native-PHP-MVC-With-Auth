@@ -15,7 +15,7 @@
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($user['id']) ?>">
         <div class="col-md-6">
           <label for="username" class="form-label">Username</label>
-          <input type="text" class="form-control <?php if(isset($error['username'])) : ?> border border-danger <?php endif; ?>" id="username" name="username" <?php if(isset($currentValues['username'])) : ?> value="<?= htmlspecialchars($currentValues['username']) ?>" <?php endif ; ?> required>
+          <input type="text" class="form-control <?php if(isset($error['username'])) : ?> border border-danger <?php endif; ?>" id="username" name="username" <?php if(isset($currentValues['username'])) : ?> value="<?= htmlspecialchars($currentValues['username']) ?>"<?php else: ?> value="<?= htmlspecialchars($user['username'])?>"<?php endif ; ?> required>
           <?php if(isset($error['username'])) : ?>
             <p class="text-danger"><i class="bi bi-exclamation-circle p-1"></i><?= htmlspecialchars($error['username']) ?></p>
           <?php endif; ?>
@@ -24,7 +24,7 @@
           <label for="email" class="form-label">Email</label>
           <div class="input-group">
             <span class="input-group-text" id="inputGroupPrepend">@</span>
-            <input type="text" class="form-control <?php if(isset($error['email'])) : ?> border border-danger <?php endif; ?>" id="email" name="email" aria-describedby="inputGroupPrepend" <?php if(isset($currentValues['username'])) : ?> value="<?= htmlspecialchars($currentValues['email']) ?>" <?php endif ; ?> required>
+            <input type="text" class="form-control <?php if(isset($error['email'])) : ?> border border-danger <?php endif; ?>" id="email" name="email" aria-describedby="inputGroupPrepend" <?php if(isset($currentValues['username'])) : ?> value="<?= htmlspecialchars($currentValues['email']) ?>"<?php else: ?> value="<?= htmlspecialchars($user['email'])?>"<?php endif ; ?> required>
           </div>
           <?php if(isset($error['email'])) : ?>
             <p class="text-danger"><i class="bi bi-exclamation-circle p-1"></i><?= htmlspecialchars($error['email']) ?></p>

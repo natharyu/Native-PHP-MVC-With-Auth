@@ -4,10 +4,14 @@ namespace Models;
 abstract class Database {
     
     private static $_dbConnect;
+    private static $host = '_YOUR_DB_HOST_';
+    private static $user ='_YOUR_DB_USER_';
+    private static $pass = '_YOUR_PASSWORD_'; // set '' if no password
+    private static $dbname = '_YOUR_DB_NAME_';
     
     private static function setDb()
     {
-        self::$_dbConnect = new \PDO( 'mysql:host=YOUR_HOST;dbname=YOUR_DB_NAME;charset=utf8', 'YOUR_USERNAME', 'YOUR_PASSWORD');
+        self::$_dbConnect = new \PDO( "mysql:host=". self::$host .";dbname=". self::$dbname .";charset=utf8", self::$user , self::$pass);
         self::$_dbConnect->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING );
     }
     
@@ -21,7 +25,8 @@ abstract class Database {
         return self::$_dbConnect;
     }
     
-    protected static function getAll( String $table )
+    // Get all from a table
+    protected static function getAll( String $table ) :array
     {
         $sql = 'SELECT * FROM ' . $table;
         $query = self::getDb()->prepare( $sql );
@@ -30,7 +35,8 @@ abstract class Database {
         return $query->fetchAll( \PDO::FETCH_ASSOC );
     }
     
-    protected static function getOne( String $table, String $condition, String $value )
+    // Get one from a table
+    protected static function getOne( String $table, String $condition, String $value ) :array
     {
         $sql = 'SELECT * FROM '. $table .' WHERE '. $condition .' = ?';
         $query = self::getDb()->prepare( $sql );
@@ -39,14 +45,16 @@ abstract class Database {
         return $query->fetch( \PDO::FETCH_ASSOC );
     }
 
-    protected static function addOne( String $table, String $columns, String $values, Array $data )
+    // Add one to table
+    protected static function addOne( String $table, String $columns, String $values, Array $data ) :void
     {
         $sql = 'INSERT INTO '. $table .' ( '. $columns .' ) VALUES ('. $values .')';
         $query = self::getDb()->prepare( $sql );
         $query->execute( $data );
     }
 
-    protected static function updateOne( String $table, Array $newData, String $condition, Int $uniq )
+    // Update one from table
+    protected static function updateOne( String $table, Array $newData, String $condition, Int $uniq ) :void
     {
         $sets = '';
         foreach( $newData as $key => $value )
@@ -67,7 +75,8 @@ abstract class Database {
         $query->execute();
     }
 
-    protected static function deleteOne( $table, $column, $value )
+    // Delete one from table
+    protected static function deleteOne( $table, $column, $value ) :void
     {
         $sql = 'DELETE FROM ' . $table . ' WHERE ' . $column . ' = ?';
         $query = self::getDb()->prepare( $sql );

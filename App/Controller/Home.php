@@ -2,31 +2,36 @@
 
 class Home
 {
-    public function index()
+    // Return main view
+    public function index() :void
     {
         $view = './App/Views/Home/Homepage/Main.php';
         include_once './App/Views/Home/Layout/Layout.php';
     }
 
-    public function loginForm()
+    // Return login view
+    public function loginForm() :void
     {
         $view = './App/Views/Home/Session/Login.php';
         include_once './App/Views/Home/Layout/Layout.php';
     }
 
-    public function registerForm()
+    // Return register view
+    public function registerForm() :void
     {
         $view = './App/Views/Home/Session/Register.php';
         include_once './App/Views/Home/Layout/Layout.php';
     }
 
-    public function aboutView()
+    // Return about view
+    public function aboutView() :void
     {
         $view = './App/Views/Home/Homepage/About.php';
         include_once './App/Views/Home/Layout/Layout.php';
     }
 
-    public function contactForm()
+    // Return contact view
+    public function contactForm() :void
     {
         $view = './App/Views/Home/Homepage/Contact.php';
         include_once './App/Views/Home/Layout/Layout.php';

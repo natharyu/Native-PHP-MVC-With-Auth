@@ -5,7 +5,7 @@ use App\Model\Session;
 
 class User
 {
-    public static function registerValidate()
+    public static function registerValidate() :void
     {
         $users = Users::all();
         $currentValues = self::getCurrentValues($_POST['username'], $_POST['email'], $_POST['password']);
@@ -20,10 +20,9 @@ class User
             $results['agree'] = "Please accept the agreement.";
         }
         self::errorValidatation($results, $currentValues, 'register');
-
     }
 
-    public static function getCurrentValues(String $username = null, String $email = null, String $password = null, String $role = null)
+    public static function getCurrentValues(String $username = null, String $email = null, String $password = null, String $role = null) :array
     {
         $currentValues['username'] = $username;
         $currentValues['email'] = $email;
@@ -35,7 +34,7 @@ class User
         return $currentValues;
     }
 
-    public static function validateResults(Array $users, String $username = null, String $email = null, String $password = null, String $passwordConfirm = null)
+    public static function validateResults(Array $users, String $username = null, String $email = null, String $password = null, String $passwordConfirm = null) :array
     {
         $results['username'] = self::usernameValidate($users, $username);
         $results['email'] = self::emailValidate($users, $email);
@@ -44,7 +43,7 @@ class User
         return $results;
     }
 
-    public static function errorValidatation(Array $results, Array $currentValues, String $route)
+    public static function errorValidatation(Array $results, Array $currentValues, String $route) :void
     {
         foreach($results as $result => $value)
         {
@@ -82,7 +81,7 @@ class User
         }
     }
 
-    public static function usernameValidate(Array $users, String $username)
+    public static function usernameValidate(Array $users, String $username) :string
     {
         try
         {
@@ -112,7 +111,7 @@ class User
         }
     }
 
-    public static function emailValidate(Array $users, String $email)
+    public static function emailValidate(Array $users, String $email) :string
     {
         try
         {
@@ -146,7 +145,7 @@ class User
         }
     }
 
-    public static function passwordValidate(String $password)
+    public static function passwordValidate(String $password) :string
     {
         try
         {
@@ -176,7 +175,7 @@ class User
         }
     }
 
-    public static function passwordConfirmValidate(String $password, String $passwordConfirm)
+    public static function passwordConfirmValidate(String $password, String $passwordConfirm) :string
     {
         try
         {
@@ -212,7 +211,7 @@ class User
         exit();
     }
 
-    public static function loginValidate()
+    public static function loginValidate() :void
     {
         if( isset( $_POST['username'] ) && !empty( $_POST['username'] ) &&
             isset( $_POST['password'] ) && !empty( $_POST['password'] ))
@@ -246,7 +245,7 @@ class User
         self::errorValidatation($results, $currentValues, 'login');
     }
 
-    public static function userLogin($currentValues)
+    public static function userLogin($currentValues) :void
     {
         $user = Users::findByUsername($currentValues['username']);
         $sessionKey = sha1(uniqid());
@@ -263,7 +262,7 @@ class User
     }
 
     
-    public static function logout()
+    public static function logout() :void
     {
         Session::closeSession();
 
