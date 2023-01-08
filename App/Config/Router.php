@@ -1,4 +1,6 @@
-<?php namespace App\Config;
+<?php
+
+namespace App\Config;
 
 class Router
 {
