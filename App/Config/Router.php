@@ -37,6 +37,7 @@ class Router
                 return $param[0];
             }, $matches);
             $callback(new Request($params));
+            exit();
         }
     }
 }

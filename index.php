@@ -67,6 +67,6 @@ Router::get('/dashboard/users/delete', function () {
 
 //ERROR CONTROLLER //
 
-Router::get('/404', function () {
+Router::get('/.*', function () {
     (new Error())->error404();
 });
