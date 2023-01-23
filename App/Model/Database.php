@@ -48,7 +48,6 @@ abstract class Database
         } else {
             return $result;
         }
-        // return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
     // Add one to table
