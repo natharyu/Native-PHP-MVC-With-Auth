@@ -42,8 +42,13 @@ abstract class Database
         $sql = 'SELECT * FROM ' . $table . ' WHERE ' . $condition . ' = ?';
         $query = self::getDb()->prepare($sql);
         $query->execute([$value]);
-
-        return $query->fetch(\PDO::FETCH_ASSOC);
+        $result = $query->fetch(\PDO::FETCH_ASSOC);
+        if (gettype($result) === 'boolean') {
+            return $result = [];
+        } else {
+            return $result;
+        }
+        // return $query->fetch(\PDO::FETCH_ASSOC);
     }
 
     // Add one to table
